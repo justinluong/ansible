@@ -3,17 +3,21 @@
 sudo apt-add-repository -y ppa:ansible/ansible
 sudo apt update -y
 sudo apt install -y curl git software-properties-common ansible
-sudo ansible-pull -U https://github.com/justinluong/ansible.git
 ```
 
-# Create new container for testing
+# Run playbook from github
+```bash
+sudo ansible-pull -U https://github.com/justinluong/ansible.git --playbook debian-setup.yaml
+```
+
+# Create Debian 11 container for testing
 1. Pull image
 ```
 docker pull debian:bullseye-slim
 ```
 2. Create container that will be removed after exit
 ```
-docker run -it --rm debian:bullseye-slim /bin/bash -c "apt update && install sudo && bash"
+docker run -it --rm debian:bullseye-slim bash -c "apt update && apt install -y sudo && bash"
 ```
 
 # Debian Setup
