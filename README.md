@@ -9,6 +9,13 @@ sudo apt install -y curl git software-properties-common ansible
 ```bash
 sudo ansible-pull -U https://github.com/justinluong/ansible.git debian-setup.yaml
 ```
+Alternatively, you can clone the repo or copy and paste the playbooks.
+
+# Skipping tags
+Sometimes commands will fail if they've already been run. To skip tags, use the `--skip-tags` option.
+```bash
+sudo ansible-pull -U https://github.com/justinluong/ansible.git debian-setup.yaml --skip-tags "pyenv"
+```
 
 # Create Debian 11 container for testing
 1. Pull image
