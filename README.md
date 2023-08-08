@@ -7,7 +7,7 @@ sudo apt install -y curl git software-properties-common ansible
 
 # Run playbook from github
 ```bash
-sudo ansible-pull -U https://github.com/justinluong/ansible.git --playbook debian-setup.yaml
+sudo ansible-pull -U https://github.com/justinluong/ansible.git debian-setup.yaml
 ```
 
 # Create Debian 11 container for testing
