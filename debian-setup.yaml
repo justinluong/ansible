@@ -24,6 +24,8 @@
           - liblzma-dev
           - git
         state: present
+      tags:
+        - basics
 
     - name: Ensure .bashrc is sourced in .bash_profile
       blockinfile:
@@ -35,9 +37,13 @@
           fi
         create: yes # Create .bash_profile if it doesn't exist
         marker: "# {mark} ANSIBLE MANAGED BLOCK FOR BASHRC SOURCING"
+      tags:
+        - basics
 
     - name: Install pyenv
       shell: curl https://pyenv.run | bash
+      tags:
+        - pyenv
 
     - name: Add pyenv settings to bashrc
       blockinfile:
@@ -48,6 +54,8 @@
           eval "$(pyenv init -)"
         create: yes # Create file if it doesn't exist
         marker: "# {mark} ANSIBLE MANAGED BLOCK FOR PYENV"
+      tags:
+        - pyenv
 
     - name: Install Python 3.11.1 using pyenv
       shell: |
@@ -56,6 +64,8 @@
         pyenv install 3.11.1
       args:
         executable: /bin/bash
+      tags:
+        - pyenv
 
     - name: Set Python 3.11.1 as global Python version
       shell: |
@@ -64,9 +74,13 @@
         pyenv global 3.11.1
       args:
         executable: /bin/bash
+      tags:
+        - pyenv
 
     - name: Download and install Poetry
       shell: curl -sSL https://install.python-poetry.org | python3 -
+      tags:
+        - poetry
 
     - name: Add Poetry settings to bashrc
       blockinfile:
@@ -75,9 +89,13 @@
           export PATH="$HOME/.local/bin:$PATH"
         create: yes # Create file if it doesn't exist
         marker: "# {mark} ANSIBLE MANAGED BLOCK FOR POETRY"
+      tags:
+        - poetry
 
     - name: Install mambaforge
       shell: curl -LJO "https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh" && bash Mambaforge-$(uname)-$(uname -m).sh -b && rm Mambaforge-$(uname)-$(uname -m).sh
+      tags:
+        - mamba
 
     - name: Add conda settings to bashrc
       blockinfile:
@@ -88,3 +106,5 @@
           conda config --set auto_activate_base false
         create: yes # Create file if it doesn't exist
         marker: "# {mark} ANSIBLE MANAGED BLOCK FOR CONDA/MAMBA"
+      tags:
+        - mamba
