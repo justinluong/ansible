@@ -13,7 +13,7 @@ docker pull debian:bullseye-slim
 ```
 2. Create container that will be removed after exit
 ```
-docker run -it --rm debian:bullseye-slim /bin/bash -c "apt update && install -y sudo && bash"
+docker run -it --rm debian:bullseye-slim /bin/bash -c "apt update && install sudo && bash"
 ```
 
 # Debian Setup
