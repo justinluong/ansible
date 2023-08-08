@@ -8,9 +8,13 @@ sudo ansible-pull -U https://github.com/justinluong/ansible.git
 ```
 
 # Create new container for testing
-
+1. Pull image
 ```
-docker run -it --rm debian:bullseye-slim /bin/bash
+docker pull debian:bullseye
+```
+2. Create container that will be removed after exit
+```
+docker run -it --rm debian:bullseye /bin/bash
 ```
 
 # Debian Setup
