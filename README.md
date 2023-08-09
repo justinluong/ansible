@@ -10,7 +10,7 @@ Run playbooks straight from git using `ansible-pull`. Otherwise clone or copy an
 # Skipping tags
 Sometimes commands will fail if they've already been run. To skip tags, use the `--skip-tags` option.
 ```bash
-sudo ansible-pull -U https://github.com/justinluong/ansible.git debian-setup.yaml --skip-tags "pyenv"
+ansible-pull -U https://github.com/justinluong/ansible.git debian-setup.yaml --skip-tags "pyenv"
 ```
 
 # Create Debian 11 container for testing
@@ -26,13 +26,13 @@ docker run -it --rm debian:bullseye-slim bash -c "apt update && apt install -y s
 # Debian Setup
 Installs both pyenv and mamba to manage python. Mamba's path is added to the end of the PATH variable to ensure pyenv is used first.
 ```bash
-sudo ansible-pull -U https://github.com/justinluong/ansible.git debian-setup.yaml
+ansible-pull -U https://github.com/justinluong/ansible.git debian-setup.yaml
 ```
 
 # Git Setup(s)
 ```bash
-sudo ansible-pull -U https://github.com/justinluong/ansible.git git-setup-wx.yaml
+ansible-pull -U https://github.com/justinluong/ansible.git git-setup-wx.yaml
 ```
 ```bash
-sudo ansible-pull -U https://github.com/justinluong/ansible.git git-setup.yaml
+ansible-pull -U https://github.com/justinluong/ansible.git git-setup.yaml
 ```
