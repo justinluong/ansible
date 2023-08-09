@@ -10,13 +10,8 @@
 
   tasks:
     - name: Set Git Config
-      environment:
-        GIT_AUTHOR_EMAIL: "{{ git_email }}"
-        GIT_COMMITTER_EMAIL: "{{ git_email }}"
-        GIT_AUTHOR_NAME: "{{ git_name }}"
-        GIT_COMMITTER_NAME: "{{ git_name }}"
-      command: >-
-        echo "Git configured with email '{{ git_email }}' and name '{{ git_name }}'"
+      command: "git config --global user.email {{ git_email }} && git config --global user.name {{ git_name }}"
+      ignore_errors: true
 
     - name: Configure Git Credential Storage
       command: "git config --global credential.helper store"
