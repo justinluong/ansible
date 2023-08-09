@@ -10,7 +10,9 @@
 
   tasks:
     - name: Set Git Config
-      command: "git config --global user.email {{ git_email }} && git config --global user.name {{ git_name }}"
+      shell: |
+        git config --global user.email {{ git_email }}
+        git config --global user.name {{ git_name }}
       ignore_errors: true
 
     - name: Configure Git Credential Storage
