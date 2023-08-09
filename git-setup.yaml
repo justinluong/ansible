@@ -1,0 +1,23 @@
+---
+- name: Configure Git
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  vars:
+    git_email: justinluong1@gmail.com
+    git_name: Justin
+
+  tasks:
+    - name: Set Git Config
+      environment:
+        GIT_AUTHOR_EMAIL: "{{ git_email }}"
+        GIT_COMMITTER_EMAIL: "{{ git_email }}"
+        GIT_AUTHOR_NAME: "{{ git_name }}"
+        GIT_COMMITTER_NAME: "{{ git_name }}"
+      command: >-
+        echo "Git configured with email '{{ git_email }}' and name '{{ git_name }}'"
+
+    - name: Configure Git Credential Storage
+      command: "git config --global credential.helper store"
+      ignore_errors: true
