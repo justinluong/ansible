@@ -2,7 +2,7 @@
 ```bash
 sudo apt-add-repository -y ppa:ansible/ansible
 sudo apt update -y
-sudo apt install -y curl git software-properties-common ansible
+sudo apt install -y curl git software-properties-common ansible vim tmux
 ```
 
 Run playbooks straight from git using `ansible-pull`. Otherwise clone or copy and paste the playbooks to the local machine.
