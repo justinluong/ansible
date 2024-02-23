@@ -13,7 +13,7 @@ Sometimes commands will fail if they've already been run. To skip tags, use the 
 ansible-pull -U https://github.com/justinluong/ansible.git debian-setup.yaml --skip-tags "pyenv"
 ```
 
-# Create Debian 11 container for testing
+# Create Debian 12 container for testing
 1. Pull image
 ```
 docker pull debian:bookworm-slim
