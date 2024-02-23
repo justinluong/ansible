@@ -16,11 +16,11 @@ ansible-pull -U https://github.com/justinluong/ansible.git debian-setup.yaml --s
 # Create Debian 11 container for testing
 1. Pull image
 ```
-docker pull debian:bullseye-slim
+docker pull debian:bookworm-slim
 ```
 2. Create container that will be removed after exit
 ```
-docker run -it --rm debian:bullseye-slim bash -c "apt update && apt install -y sudo && bash"
+docker run -it --rm debian:bookworm-slim bash -c "apt update && apt install -y sudo && bash"
 ```
 
 # Debian Setup
