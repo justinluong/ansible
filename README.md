@@ -5,6 +5,11 @@ sudo apt update -y
 sudo apt install -y curl git software-properties-common ansible vim tmux
 ```
 
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew install ansible
+```
+
 Run playbooks straight from git using `ansible-pull`. Otherwise clone or copy and paste the playbooks to the local machine.
 
 # Skipping tags
