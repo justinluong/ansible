@@ -1,0 +1,113 @@
+---
+- name: Setup Git on macOS
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: Install Git using Homebrew
+      homebrew:
+        name: git
+        state: present
+      tags:
+        - git
+
+    - name: Install Oh My Zsh
+      shell: |
+        sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+      args:
+        executable: /bin/zsh
+      ignore_errors: yes
+      tags:
+        - ohmyzsh
+
+    - name: Create aliases.zsh if it does not exist
+      file:
+        path: /Users/justinluong/.oh-my-zsh/custom/aliases.zsh
+        state: touch
+      tags:
+        - ohmyzsh
+
+    - name: Create path.zsh if it does not exist
+      file:
+        path: /Users/justinluong/.oh-my-zsh/custom/path.zsh
+        state: touch
+      tags:
+        - ohmyzsh
+
+    - name: Create env.zsh if it does not exist
+      file:
+        path: /Users/justinluong/.oh-my-zsh/custom/env.zsh
+        state: touch
+      tags:
+        - ohmyzsh
+
+    - name: Install pyenv
+      shell: |
+        curl https://pyenv.run | bash
+      args:
+        executable: /bin/zsh
+      ignore_errors: yes
+      tags:
+        - pyenv
+
+    - name: Configure pyenv in env.zsh
+      lineinfile:
+        path: /Users/justinluong/.oh-my-zsh/custom/env.zsh
+        create: yes
+        line: |
+          # Pyenv configuration
+          export PATH="$HOME/.pyenv/bin:$PATH"
+          eval "$(pyenv init --path)"
+          eval "$(pyenv init -)"
+          eval "$(pyenv virtualenv-init -)"
+      tags:
+        - pyenv
+
+    - name: Install Python 3.12.4
+      shell: |
+        ~/.pyenv/bin/pyenv install 3.12.4
+      args:
+        executable: /bin/zsh
+      ignore_errors: yes
+      tags:
+        - python
+
+    - name: Set Python 3.12.4 as global
+      shell: |
+        ~/.pyenv/bin/pyenv global 3.12.4
+      args:
+        executable: /bin/zsh
+      tags:
+        - python
+
+    - name: Install Poetry
+      shell: |
+        curl -sSL https://install.python-poetry.org | python3 -
+      args:
+        executable: /bin/zsh
+      tags:
+        - poetry
+
+    - name: Add Poetry to PATH in env.zsh
+      lineinfile:
+        path: /Users/justinluong/.oh-my-zsh/custom/env.zsh
+        create: yes
+        line: 'export PATH="$HOME/.local/bin:$PATH"'
+      tags:
+        - poetry
+
+    - name: Configure Poetry to create virtual environments in project directory
+      shell: |
+        ~/.local/bin/poetry config virtualenvs.in-project true
+      args:
+        executable: /bin/zsh
+      tags:
+        - poetry
+
+    - name: Configure Poetry to use active Python version
+      shell: |
+        ~/.local/bin/poetry config virtualenvs.prefer-active-python true
+      args:
+        executable: /bin/zsh
+      register: poetry_config_active_python_output
+      tags:
+        - poetry
